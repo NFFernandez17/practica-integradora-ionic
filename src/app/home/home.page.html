@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Estructuras de control</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2>A. Registro de calificaciones</h2>
+
+  <ion-item>
+    <ion-input label="Nombre del alumno" labelPlacement="floating"
+               [(ngModel)]="nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Calificación (0-100)" labelPlacement="floating"
+               type="number" [(ngModel)]="calificacion"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="agregarAlumno()">Agregar alumno</ion-button>
+  <ion-button expand="block" color="medium" (click)="limpiarLista()">Limpiar lista</ion-button>
+
+  @if (mensaje) {
+    <p><strong>{{ mensaje }}</strong></p>
+  }
+
+  <ion-list>
+    @for (alumno of alumnos; track $index) {
+      <ion-item>
+        <ion-label>
+          {{ $index + 1 }}. {{ alumno.nombre }} - {{ alumno.calificacion }} ({{ alumno.estado }})
+        </ion-label>
+      </ion-item>
+    } @empty {
+      <ion-item><ion-label>No hay alumnos registrados</ion-label></ion-item>
+    }
+  </ion-list>
+
+  @if (resumen) {
+    <p>{{ resumen }}</p>
+  }
+
+  <hr>
+
+  <h2>B. Secuencias numéricas</h2>
+
+  <ion-item>
+    <ion-input label="Número entero (1-100)" labelPlacement="floating"
+               type="number" [(ngModel)]="numero"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="generarSecuencias()">Generar</ion-button>
+
+  @if (mensajeNumero) {
+    <p><strong>{{ mensajeNumero }}</strong></p>
+  }
+
+  @if (tabla.length > 0) {
+    <h3>Tabla de multiplicar (for)</h3>
+    <ion-list>
+      @for (fila of tabla; track $index) {
+        <ion-item><ion-label>{{ fila }}</ion-label></ion-item>
+      }
+    </ion-list>
+
+    <h3>Cuenta regresiva (while)</h3>
+    <p>{{ regresiva.join(', ') }}</p>
+  }
+
+</ion-content>

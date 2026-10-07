@@ -1,0 +1,7 @@
+{
+  "name": "practicaControl",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
