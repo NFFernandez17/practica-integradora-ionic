@@ -1,0 +1,31 @@
+name: CI - App Ionic
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verificar-y-compilar:
+    name: Instalar, verificar y compilar
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el codigo del repositorio
+        uses: actions/checkout@v7
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Verificar el codigo (lint)
+        run: npm run lint
+
+      - name: Compilar la aplicacion
+        run: npm run build
