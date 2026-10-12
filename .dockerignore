@@ -1,0 +1,9 @@
+node_modules
+www
+android
+.angular
+.git
+.github
+Dockerfile
+.dockerignore
+npm-debug.log
